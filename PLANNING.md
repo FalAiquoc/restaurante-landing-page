@@ -1,26 +1,23 @@
-# Planejamento de Projeto - Nexu Food SaaS
+# Planejamento do Projeto Agêntico - Nexu Food
 
-## Objetivo do Projeto
-Desenvolver uma landing page de alta conversao para o SaaS Nexu Food, replicando e aprimorando funcionalidades de mercado (benchmark Anota.ai) com uma identidade visual exclusiva e foco em performance.
+## Fase 1: Implementação da Camada de Inteligência
+- Desenvolvimento dos Agentes Python para Atendimento, Cardápio e Logística.
+- Definição da lógica de multi-agentes para conversação e automação de tarefas.
+- Criação de scripts de teste para simular o comportamento do bot virtual.
 
-## Etapa 1: Analise de Mercado e Recursos
-- Estudo das funcionalidades core: Chatbot, Cardapio Digital, Painel Administrativo.
-- Mapeamento de dores dos donos de restaurante: Taxas altas de apps de entrega, demora no atendimento, erros em pedidos.
+## Fase 2: Dashboard Administrativo e Visualização
+- Estruturação do dashboard.html com UI moderna e gráficos de performance.
+- Integração do Chart.js para exibição de faturamento e estoque em tempo real.
+- Linkagem estratégica entre a Landing Page e a interface administrativa.
 
-## Etapa 2: Copywriting e UX Design
-- Hero section com foco no beneficio principal: Lucratividade e Automacao.
-- Prova social e secao de funcionalidades com icones intuitivos.
-- Fluxo de navegacao otimizado para mobile (Mobile-First).
+## Fase 3: SEO e Captação de Clientes SaaS
+- Otimização da Landing Page com palavras-chave focadas em "Agentes de IA para Restaurantes".
+- Refatoração da copy para destacar o benefício de ter uma operação rodando 24/7 via Python.
+- Configuração do formulário de demo para alimentar o funil do CRM via Agentes.
 
-## Etapa 3: Desenvolvimento Tecnico
-- Estrutura em HTML5 semantico e CSS3 customizado.
-- Otimizacao de imagens e carregamento assincrono de scripts.
-- Implementacao de micro-interacoes para melhorar a experiencia do usuario.
-
-## Etapa 4: Mensuracao e Evolucao
-- Configuracao de funis de conversao no CRM.
-- Testes A/B em botoes de CTA e headlines.
-- Analise de mapas de calor (Hotjar/Clarity) para identificar pontos de friccao.
+## Fase 4: Integração Contínua e Escala
+- Documentação técnica detalhada (README/STACK) para novos desenvolvedores.
+- Plano de migração para infraestrutura em nuvem para execução permanente dos scripts Python.
 
 ---
-Planejamento focado em resultados de negocio e facilidade de manutencao tecnica.
+Planejamento orientado a resultados técnicos e comerciais, utilizando o estado da arte em agentes autônomos.
