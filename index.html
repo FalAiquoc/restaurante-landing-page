@@ -25,9 +25,43 @@
         nav { background: var(--white); padding: 15px 0; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         nav .container { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 24px; font-weight: 800; color: var(--primary); letter-spacing: -1px; }
-        .nav-links a { text-decoration: none; color: var(--secondary); margin-left: 25px; font-weight: 600; font-size: 14px; transition: 0.3s; }
+        
+        .nav-links { display: flex; align-items: center; list-style: none; }
+        .nav-links > li { margin-left: 25px; position: relative; }
+        .nav-links a { text-decoration: none; color: var(--secondary); font-weight: 600; font-size: 14px; transition: 0.3s; }
         .nav-links a:hover { color: var(--primary); }
-        .btn-nav { background: var(--primary); color: var(--white) !important; padding: 10px 20px; border-radius: 5px; }
+        
+        /* Dropdown Menu */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            min-width: 220px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            z-index: 1001;
+            border-radius: 8px;
+            padding: 10px 0;
+            top: 100%;
+            left: 0;
+            margin-top: 15px;
+            border: 1px solid #f0f0f0;
+        }
+        .nav-links li:hover .dropdown-content { display: block; }
+        .dropdown-content a {
+            padding: 12px 20px;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.2s;
+        }
+        .dropdown-content a:hover {
+            background-color: var(--gray-light);
+            color: var(--primary);
+        }
+        .dropdown-content i { color: var(--primary); width: 20px; text-align: center; }
+
+        .btn-nav { background: var(--primary); color: var(--white) !important; padding: 10px 20px; border-radius: 5px; box-shadow: 0 4px 6px rgba(255, 77, 77, 0.2); }
 
         /* Hero Section */
         .hero { padding: 120px 0 80px; background: linear-gradient(135deg, #FFF5F5 0%, #FFFFFF 100%); position: relative; }
@@ -41,10 +75,6 @@
         .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(255, 77, 77, 0.3); }
         .btn-secondary { background: var(--white); color: var(--secondary); border: 2px solid #eee; }
         
-        /* Trust Badges */
-        .trust-badges { margin-top: 60px; display: flex; align-items: center; gap: 30px; opacity: 0.6; grayscale: 100%; }
-        .trust-badges img { height: 30px; }
-
         /* ROI Section */
         .roi-section { padding: 100px 0; background: var(--dark); color: var(--white); text-align: center; }
         .roi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 50px; }
@@ -73,14 +103,6 @@
             margin: 0 auto 20px; font-weight: 800;
         }
 
-        /* Comparison */
-        .comparison { padding: 100px 0; }
-        table { width: 100%; border-collapse: collapse; margin-top: 40px; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        th, td { padding: 25px; text-align: left; border-bottom: 1px solid #eee; }
-        th { background: var(--gray-light); font-weight: 700; }
-        .check { color: var(--success); font-weight: 800; }
-        .cross { color: #ccc; }
-
         /* CTA Section */
         .cta-final { padding: 100px 0; background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=1200'); background-size: cover; color: var(--white); text-align: center; }
         .cta-final h2 { font-size: 42px; margin-bottom: 20px; }
@@ -89,16 +111,12 @@
         footer { padding: 80px 0 40px; background: #000; color: #666; font-size: 14px; }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 60px; }
         .footer-logo { color: var(--white); font-size: 22px; font-weight: 800; margin-bottom: 20px; }
-        .footer-links h4 { color: var(--white); margin-bottom: 20px; }
-        .footer-links ul { list-style: none; }
-        .footer-links ul li { margin-bottom: 10px; }
-        .footer-links ul li a { color: #666; text-decoration: none; transition: 0.3s; }
-        .footer-links ul li a:hover { color: var(--white); }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 38px; }
             .hero-btns { flex-direction: column; }
             .roi-grid, .steps-grid, .footer-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
@@ -107,12 +125,20 @@
 <nav>
     <div class="container">
         <div class="logo">NEXU FOOD</div>
-        <div class="nav-links">
-            <a href="#funcionalidades">Funcionalidades</a>
-            <a href="#como-funciona">Como Funciona</a>
-            <a href="#precos">Preços</a>
-            <a href="/dashboard.html" class="btn-nav">ACESSAR PAINEL</a>
-        </div>
+        <ul class="nav-links">
+            <li class="dropdown">
+                <a href="#funcionalidades">Funcionalidades <i class="fas fa-chevron-down" style="font-size: 10px;"></i></a>
+                <div class="dropdown-content">
+                    <a href="#funcionalidades"><i class="fas fa-robot"></i> Atendimento por Agentes</a>
+                    <a href="#funcionalidades"><i class="fas fa-qrcode"></i> Cardápio Digital</a>
+                    <a href="#funcionalidades"><i class="fas fa-bullseye"></i> Recuperação de Vendas</a>
+                    <a href="#funcionalidades"><i class="fas fa-chart-line"></i> Gestão em Tempo Real</a>
+                </div>
+            </li>
+            <li><a href="#como-funciona">Como Funciona</a></li>
+            <li><a href="#precos">Preços</a></li>
+            <li><a href="dashboard.html" class="btn-nav">ACESSAR PAINEL</a></li>
+        </ul>
     </div>
 </nav>
 
@@ -124,13 +150,6 @@
             <div class="hero-btns">
                 <a href="#contato" class="btn btn-primary">TESTAR GRÁTIS POR 14 DIAS</a>
                 <a href="#como-funciona" class="btn btn-secondary">VER DEMONSTRAÇÃO</a>
-            </div>
-            <div class="trust-badges">
-                <span>Integrado com:</span>
-                <i class="fab fa-whatsapp fa-2x"></i>
-                <i class="fab fa-facebook fa-2x"></i>
-                <i class="fab fa-instagram fa-2x"></i>
-                <i class="fab fa-google fa-2x"></i>
             </div>
         </div>
     </div>
@@ -181,45 +200,6 @@
     </div>
 </section>
 
-<section class="comparison">
-    <div class="container">
-        <div class="section-header">
-            <h2>Nexu Food vs. Sistemas Tradicionais</h2>
-        </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Funcionalidade</th>
-                    <th>Nexu Food (SaaS)</th>
-                    <th>Sistemas Legados</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Atendimento por Agentes IA</td>
-                    <td class="check">SIM - Nativo</td>
-                    <td class="cross">NÃO - Apenas Chatbot fixo</td>
-                </tr>
-                <tr>
-                    <td>Recuperação de Carrinho</td>
-                    <td class="check">SIM - Automático</td>
-                    <td class="cross">NÃO</td>
-                </tr>
-                <tr>
-                    <td>Dashboard em Tempo Real</td>
-                    <td class="check">SIM - Cloud based</td>
-                    <td class="cross">LIMITADO - Local</td>
-                </tr>
-                <tr>
-                    <td>Taxas sobre Pedidos</td>
-                    <td class="check">0% - Taxa Fixa</td>
-                    <td class="cross">Variável (iFood, etc)</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</section>
-
 <section id="como-funciona" class="steps">
     <div class="container">
         <div class="section-header">
@@ -253,37 +233,8 @@
 
 <footer>
     <div class="container">
-        <div class="footer-grid">
-            <div>
-                <div class="footer-logo">NEXU FOOD</div>
-                <p>A revolução agêntica no setor de food service. Tecnologia pensada para o crescimento real do seu negócio.</p>
-            </div>
-            <div class="footer-links">
-                <h4>Produto</h4>
-                <ul>
-                    <li><a href="#">Funcionalidades</a></li>
-                    <li><a href="#">Dashboard</a></li>
-                    <li><a href="#">Integrações</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Empresa</h4>
-                <ul>
-                    <li><a href="#">Sobre nós</a></li>
-                    <li><a href="#">Vagas</a></li>
-                    <li><a href="#">Blog</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Suporte</h4>
-                <ul>
-                    <li><a href="#">Central de Ajuda</a></li>
-                    <li><a href="#">Contato</a></li>
-                    <li><a href="#">Status</a></li>
-                </ul>
-            </div>
-        </div>
-        <div style="border-top: 1px solid #222; padding-top: 30px; text-align: center;">
+        <div style="text-align: center;">
+            <div class="footer-logo">NEXU FOOD</div>
             <p>© 2026 Nexu Food. Todos os direitos reservados. Desenvolvido para máxima conversão SaaS.</p>
         </div>
     </div>
