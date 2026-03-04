@@ -5,233 +5,159 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nexu Food | Gestão e Automação Inteligente para Restaurantes</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --gunmetal: #1a1c1e;
-            --wood: #3d2b1f;
-            --gold: #d4af37;
-            --gold-light: #f4d03f;
-            --text-light: #e0e0e0;
-            --text-muted: #8d8d8d;
-            --bg-accent: #2c2f33;
-            --border: rgba(212, 175, 55, 0.2);
-            --success: #25d366;
+            --primary: #FF4D4D;
+            --secondary: #2D3436;
+            --accent: #FFD700;
+            --white: #FFFFFF;
+            --gray-light: #F4F4F4;
+            --gray: #636E72;
+            --success: #00B894;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            background-color: var(--gunmetal); 
-            color: var(--text-light); 
-            line-height: 1.7; 
-            font-family: 'Montserrat', sans-serif;
-            overflow-x: hidden;
-        }
+        body { font-family: 'Montserrat', sans-serif; line-height: 1.6; color: var(--secondary); background: var(--white); }
 
-        h1, h2, h3, .brand { font-family: 'Cinzel', serif; font-weight: 700; letter-spacing: 1px; color: var(--gold); }
-        
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-        /* Navigation */
-        nav { padding: 25px 0; border-bottom: 1px solid var(--border); background: rgba(0,0,0,0.3); position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); }
-        .nav-content { display: flex; justify-content: space-between; align-items: center; }
-        .brand { font-size: 1.6rem; text-decoration: none; }
-        .nav-links a { color: var(--text-light); text-decoration: none; margin-left: 30px; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; }
+        /* Navbar */
+        nav { background: var(--white); padding: 20px 0; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 1000; }
+        nav .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 24px; font-weight: 700; color: var(--primary); }
+        .nav-links a { text-decoration: none; color: var(--secondary); margin-left: 30px; font-weight: 600; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
 
         /* Hero */
-        .hero { padding: 180px 0 100px; background: linear-gradient(rgba(26,28,30,0.92), rgba(26,28,30,0.92)), url('https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; display: flex; align-items: center; }
-        .hero-flex { display: flex; gap: 60px; align-items: center; }
-        .hero-text { flex: 1; }
-        .hero h1 { font-size: 3.2rem; margin-bottom: 25px; line-height: 1.1; }
-        .hero p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 40px; }
-
-        /* Form Lead Capture (Anota AI Style) */
-        .hero-form { 
-            flex: 0 0 450px; background: var(--wood); padding: 40px; border-radius: 4px; 
-            border: 1px solid var(--gold); box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-        }
-        .hero-form h2 { color: white; margin-bottom: 25px; font-size: 1.5rem; text-align: center; }
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .form-group { margin-bottom: 15px; }
-        .full-width { grid-column: span 2; }
-        label { display: block; font-size: 0.75rem; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; font-weight: 600; }
-        input, select { 
-            width: 100%; padding: 12px; background: rgba(0,0,0,0.4); border: 1px solid var(--border); 
-            color: white; border-radius: 2px; font-family: inherit; font-size: 0.9rem;
-        }
-        .btn-trial { 
-            width: 100%; background: var(--gold); color: var(--gunmetal); border: none; padding: 15px; 
-            font-weight: 800; text-transform: uppercase; font-family: 'Cinzel', serif; cursor: pointer; transition: 0.3s; margin-top: 10px;
-        }
-        .btn-trial:hover { background: var(--gold-light); }
-
-        /* Pricing Table */
-        .section { padding: 100px 0; }
-        .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 50px; }
-        .plan-card { background: var(--bg-accent); border: 1px solid var(--border); padding: 50px; border-radius: 4px; transition: 0.3s; position: relative; }
-        .plan-card.featured { border-color: var(--gold); border-width: 2px; }
-        .plan-card h3 { font-size: 2rem; margin-bottom: 10px; }
-        .price { font-size: 2.5rem; color: #fff; margin-bottom: 30px; }
-        .price span { font-size: 1rem; color: var(--text-muted); }
-        .feature-list { list-style: none; margin-bottom: 40px; }
-        .feature-list li { margin-bottom: 12px; font-size: 0.95rem; color: var(--text-muted); display: flex; align-items: center; gap: 10px; }
-        .feature-list li i.fa-check { color: var(--success); }
-        .feature-list li i.fa-times { color: #ff4d4d; opacity: 0.5; }
+        .hero { padding: 100px 0; background: linear-gradient(135deg, #FFF5F5 0%, #FFFFFF 100%); text-align: center; }
+        .hero h1 { font-size: 48px; margin-bottom: 20px; color: var(--secondary); }
+        .hero p { font-size: 20px; color: var(--gray); margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .btn { display: inline-block; padding: 15px 40px; background: var(--primary); color: var(--white); text-decoration: none; border-radius: 50px; font-weight: 700; transition: transform 0.3s; }
+        .btn:hover { transform: scale(1.05); }
 
         /* Features */
-        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .feature-item { text-align: center; padding: 40px; background: rgba(0,0,0,0.2); border: 1px solid var(--border); }
-        .feature-item i { font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; }
+        .features { padding: 100px 0; }
+        .features h2 { text-align: center; margin-bottom: 60px; font-size: 36px; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .feature-card { padding: 40px; background: var(--gray-light); border-radius: 20px; text-align: center; transition: background 0.3s, color 0.3s; }
+        .feature-card:hover { background: var(--primary); color: var(--white); }
+        .feature-card i { font-size: 40px; margin-bottom: 20px; color: var(--primary); }
+        .feature-card:hover i { color: var(--white); }
+        .feature-card h3 { margin-bottom: 15px; }
 
-        footer { padding: 60px 0; background: #000; text-align: center; border-top: 2px solid var(--wood); }
-        .footer-logo { font-size: 2rem; margin-bottom: 20px; }
+        /* SaaS Benefits */
+        .benefits { background: var(--secondary); color: var(--white); padding: 100px 0; }
+        .benefit-item { display: flex; align-items: center; margin-bottom: 40px; }
+        .benefit-item i { font-size: 24px; color: var(--success); margin-right: 20px; }
 
-        @media (max-width: 992px) {
-            .hero-flex { flex-direction: column; }
-            .hero-form { flex: 1; width: 100%; }
-            .pricing-grid { grid-template-columns: 1fr; }
-            .features-grid { grid-template-columns: 1fr; }
+        /* Footer */
+        footer { padding: 60px 0; background: #1a1a1a; color: var(--white); text-align: center; }
+        .footer-links { margin: 20px 0; }
+        .footer-links a { color: #888; text-decoration: none; margin: 0 15px; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            .hero p { font-size: 18px; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="container nav-content">
-            <a href="#" class="brand">NEXU FOOD</a>
-            <div class="nav-links">
-                <a href="#funcionalidades">Funcionalidades</a>
-                <a href="#planos">Planos</a>
-                <a href="https://wa.me/suporte" style="color: var(--gold);"><i class="fab fa-whatsapp"></i> Falar com Consultor</a>
-            </div>
+<nav>
+    <div class="container">
+        <div class="logo">NEXU FOOD</div>
+        <div class="nav-links">
+            <a href="#funcionalidades">Funcionalidades</a>
+            <a href="#beneficios">Benefícios</a>
+            <a href="#contato">Solicitar Demo</a>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <section class="hero">
-        <div class="container hero-flex">
-            <div class="hero-text">
-                <h1>O Plano Ideal para seu Restaurante Lucrar 80% mais</h1>
-                <p>Descubra como a Nexu Food automatiza seu atendimento, centraliza seus pedidos e profissionaliza sua gestão financeira com inteligência artificial.</p>
-                <div class="stats" style="display: flex; gap: 30px; opacity: 0.8;">
-                    <div><b style="color: var(--gold); font-size: 1.5rem;">40k+</b><br><small>Clientes</small></div>
-                    <div><b style="color: var(--gold); font-size: 1.5rem;">24/7</b><br><small>Suporte VIP</small></div>
-                    <div><b style="color: var(--gold); font-size: 1.5rem;">100%</b><br><small>Seguro</small></div>
-                </div>
-            </div>
-            <div class="hero-form">
-                <h2>Teste Grátis por 7 dias</h2>
-                <form class="form-grid">
-                    <div class="form-group full-width">
-                        <label>Nome Completo</label>
-                        <input type="text" placeholder="Seu nome" required>
-                    </div>
-                    <div class="form-group">
-                        <label>E-mail Pessoal</label>
-                        <input type="email" placeholder="seu@email.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Celular (WhatsApp)</label>
-                        <input type="tel" placeholder="(00) 00000-0000" required>
-                    </div>
-                    <div class="form-group full-width">
-                        <label>Nome do Estabelecimento</label>
-                        <input type="text" placeholder="Ex: Nexu Grill" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Pedidos p/ Dia</label>
-                        <select required>
-                            <option value="low">Menos de 20</option>
-                            <option value="high">Mais de 20</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Faturamento Mensal</label>
-                        <select required>
-                            <option value="1">Até R$ 10k</option>
-                            <option value="2">Até R$ 40k</option>
-                            <option value="3">Acima de R$ 40k</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn-trial">Começar Teste Gratuito</button>
-                </form>
-            </div>
-        </div>
-    </section>
+<section class="hero">
+    <div class="container">
+        <h1>O Sistema de Gestão que seu Restaurante Merece</h1>
+        <p>Automatize o atendimento no WhatsApp, organize seus pedidos e venda muito mais com o cardápio digital inteligente da Nexu Food.</p>
+        <a href="#contato" class="btn">COMEÇAR TESTE GRÁTIS</a>
+    </div>
+</section>
 
-    <section class="section container" id="planos">
-        <div style="text-align: center; margin-bottom: 60px;">
-            <h2>Invista no seu Sucesso</h2>
-            <p style="color: var(--text-muted);">Preços acessíveis para escalar sua operação.</p>
-        </div>
-        <div class="pricing-grid">
-            <div class="plan-card">
-                <h3>Nexu Start</h3>
-                <p style="color: var(--text-muted); margin-bottom: 20px;">Ideal para quem está começando a automatizar.</p>
-                <div class="price">R$ 299,90<span>/mês</span></div>
-                <ul class="feature-list">
-                    <li><i class="fas fa-check"></i> Robô IA para WhatsApp/Insta</li>
-                    <li><i class="fas fa-check"></i> Cardápio Digital Customizado</li>
-                    <li><i class="fas fa-check"></i> QR Code para Mesas</li>
-                    <li><i class="fas fa-check"></i> Pagamento Online Integrado</li>
-                    <li><i class="fas fa-check"></i> Suporte 7 dias por semana</li>
-                    <li><i class="fas fa-times"></i> Gestor de Estoque Avançado</li>
-                    <li><i class="fas fa-times"></i> Emissão de NF Automatizada</li>
-                </ul>
-                <button class="btn-trial" style="background: transparent; border: 1px solid var(--gold); color: var(--gold);">Contratar Start</button>
+<section id="funcionalidades" class="features">
+    <div class="container">
+        <h2>Tudo em um único lugar</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fab fa-whatsapp"></i>
+                <h3>Chatbot Inteligente</h3>
+                <p>Atendimento automático 24/7 no WhatsApp e Instagram para nunca perder uma venda.</p>
             </div>
-            <div class="plan-card featured">
-                <div style="position: absolute; top: -15px; right: 20px; background: var(--gold); color: var(--gunmetal); padding: 5px 15px; font-size: 0.7rem; font-weight: 800;">MAIS POPULAR</div>
-                <h3>Nexu Advanced</h3>
-                <p style="color: var(--text-muted); margin-bottom: 20px;">Gestão completa e integrada para grandes operações.</p>
-                <div class="price">R$ 399,90<span>/mês</span></div>
-                <ul class="feature-list">
-                    <li><i class="fas fa-check"></i> Tudo do plano Start</li>
-                    <li><i class="fas fa-check"></i> Gestor de Estoque e Compras</li>
-                    <li><i class="fas fa-check"></i> Display de Cozinha (KDS)</li>
-                    <li><i class="fas fa-check"></i> NF Automatizada e Financeiro</li>
-                    <li><i class="fas fa-check"></i> Integração com Anúncios</li>
-                    <li><i class="fas fa-check"></i> App para Garçom Ilimitado</li>
-                    <li><i class="fas fa-check"></i> Recuperador de Vendas VIP</li>
-                </ul>
-                <button class="btn-trial">Contratar Advanced</button>
+            <div class="feature-card">
+                <i class="fas fa-utensils"></i>
+                <h3>Cardápio Digital</h3>
+                <p>QR Code nas mesas e link direto para pedidos, sem taxas abusivas de aplicativos.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Gestão em Tempo Real</h3>
+                <p>Acompanhe pedidos, estoque e relatórios financeiros em um painel intuitivo.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-credit-card"></i>
+                <h3>Pagamento Integrado</h3>
+                <p>Receba via PIX ou cartão diretamente no sistema, com segurança e rapidez.</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="section" style="background: var(--bg-accent);" id="funcionalidades">
-        <div class="container">
-            <div style="text-align: center; margin-bottom: 60px;">
-                <h2>Tecnologia de Ponta</h2>
+<section id="beneficios" class="benefits">
+    <div class="container">
+        <div style="max-width: 600px;">
+            <h2 style="margin-bottom: 40px; font-size: 36px;">Por que escolher a Nexu Food?</h2>
+            <div class="benefit-item">
+                <i class="fas fa-check-circle"></i>
+                <p>Aumento de até 30% nas vendas com o Recuperador de Pedidos.</p>
             </div>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <i class="fas fa-robot"></i>
-                    <h3>Atendimento Virtual</h3>
-                    <p>IA que entende áudios e responde perguntas frequentes 24h por dia.</p>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-utensils"></i>
-                    <h3>Cardápio Dinâmico</h3>
-                    <p>Sincronização em tempo real com seu estoque e cozinha.</p>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-chart-pie"></i>
-                    <h3>Dashboards Reais</h3>
-                    <p>Visualize seu lucro líquido, CMV e pratos mais vendidos em segundos.</p>
-                </div>
+            <div class="benefit-item">
+                <i class="fas fa-check-circle"></i>
+                <p>Redução de erros no atendimento e na cozinha.</p>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-check-circle"></i>
+                <p>Integração total com WhatsApp, Meta Pixel e Google Analytics.</p>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-check-circle"></i>
+                <p>Suporte especializado focado no crescimento do seu negócio.</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <footer>
-        <div class="container">
-            <div class="footer-logo brand">NEXU FOOD</div>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">Nexu Gestão de Restaurantes LTDA © 2026</p>
-            <div style="margin-top: 20px; font-size: 0.75rem; color: var(--text-muted); max-width: 600px; margin-left: auto; margin-right: auto;">
-                Este site é um projeto demonstrativo de alta performance. Todas as funcionalidades descritas são parte da suíte Nexu Food para o mercado de alimentação.
-            </div>
+<section id="contato" style="padding: 100px 0; text-align: center;">
+    <div class="container">
+        <h2>Pronto para escalar seu faturamento?</h2>
+        <p style="margin: 20px 0 40px;">Solicite uma demonstração gratuita e veja a Nexu Food em ação.</p>
+        <form style="max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px;">
+            <input type="text" placeholder="Seu Nome" style="padding: 15px; border: 1px solid #ddd; border-radius: 8px;">
+            <input type="email" placeholder="Seu E-mail" style="padding: 15px; border: 1px solid #ddd; border-radius: 8px;">
+            <button type="submit" class="btn" style="border: none; cursor: pointer;">SOLICITAR DEMO AGORA</button>
+        </form>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2024 Nexu Food. Todos os direitos reservados.</p>
+        <div class="footer-links">
+            <a href="#">Privacidade</a>
+            <a href="#">Termos de Uso</a>
+            <a href="#">Blog</a>
         </div>
-    </footer>
+        <p style="font-size: 12px; color: #555; margin-top: 20px;">Desenvolvido para máxima performance e conversão em conformidade com as melhores práticas de SEO.</p>
+    </div>
+</footer>
 
 </body>
 </html>
