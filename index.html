@@ -179,4 +179,75 @@
         </div>
     </footer>
 </body>
+    
+    <!-- Supabase Integration -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // Supabase config (substitua com suas credenciais reais)
+        const SUPABASE_URL = 'https://SEU_PROJETO.supabase.co';
+        const SUPABASE_ANON_KEY = 'SUA_CHAVE_ANON_AQUI';
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // Captura o botão de submit
+        const submitBtn = document.querySelector('.btn-submit');
+        
+        if (submitBtn) {
+            submitBtn.addEventListener('click', async function(e) {
+                e.preventDefault();
+                
+                // Captura os valores do formulário
+                const nome = document.querySelector('input[aria-label="Seu nome"]')?.value;
+                const email = document.querySelector('input[aria-label="seu@email.com"]')?.value;
+                const whatsapp = document.querySelector('input[aria-label="(00) 00000-0000"]')?.value;
+                const estabelecimento = document.querySelector('input[aria-label="Ex: Nexu Grill"]')?.value;
+                const pedidosDia = document.querySelector('select[aria-haspopup="menu"]')?.value || 'Não informado';
+                const faturamento = document.querySelectorAll('select[aria-haspopup="menu"]')[1]?.value || 'Não informado';
+                
+                // Validação simples
+                if (!nome || !email || !whatsapp || !estabelecimento) {
+                    alert('⚠️ Por favor, preencha todos os campos obrigatórios.');
+                    return;
+                }
+                
+                // Desabilita o botão durante o envio
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'ENVIANDO...';
+                
+                try {
+                    // Insere no Supabase
+                    const { data, error } = await supabase
+                        .from('leads')
+                        .insert([
+                            {
+                                nome: nome,
+                                email: email,
+                                whatsapp: whatsapp,
+                                estabelecimento: estabelecimento,
+                                pedidos_dia: pedidosDia,
+                                faturamento: faturamento,
+                                plano_interesse: 'Nexu Start',
+                                criado_em: new Date().toISOString()
+                            }
+                        ])
+                        .select();
+                    
+                    if (error) throw error;
+                    
+                    // Sucesso
+                    alert('✅ Cadastro realizado com sucesso! Em breve entraremos em contato.');
+                    document.querySelector('.hero-form').reset();
+                    
+                    // Redireciona para dashboard (opcional)
+                    // window.location.href = 'dashboard.html';
+                    
+                } catch (error) {
+                    console.error('Erro ao enviar lead:', error);
+                    alert('❌ Erro ao enviar. Por favor, tente novamente ou entre em contato via WhatsApp.');
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'COMEÇAR TESTE GRATUITO';
+                }
+            });
+        }
+    </script>
 </html>
