@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sabor do Nordeste | O Melhor Almoço da Região</title>
+    <style>
+        :root {
+            --primary: #e67e22;
+            --secondary: #2c3e50;
+            --accent: #27ae60;
+            --light: #f9f9f9;
+            --dark: #333;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        body { background-color: var(--light); color: var(--dark); line-height: 1.6; }
+        
+        header { background: white; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 1000; }
+        
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary); }
+        
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 20px; }
+        nav ul li a { text-decoration: none; color: var(--secondary); font-weight: 500; }
+        
+        .hero { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=1350&q=80'); height: 80vh; background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; padding: 0 20px; }
+        
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; }
+        .hero p { font-size: 1.2rem; margin-bottom: 2rem; max-width: 600px; }
+        
+        .btn { background: var(--primary); color: white; padding: 12px 30px; border: none; border-radius: 5px; text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn:hover { background: #d35400; }
+        
+        .menu-section { padding: 5rem 5%; text-align: center; }
+        .section-title { margin-bottom: 3rem; font-size: 2.5rem; color: var(--secondary); }
+        
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        
+        .menu-item { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.1); transition: 0.3s; }
+        .menu-item:hover { transform: translateY(-5px); }
+        .menu-item img { width: 100%; height: 200px; object-fit: cover; }
+        .menu-info { padding: 20px; }
+        .menu-info h3 { margin-bottom: 10px; color: var(--secondary); }
+        .menu-info p { font-size: 0.9rem; color: #666; margin-bottom: 15px; }
+        .price { color: var(--accent); font-weight: bold; font-size: 1.2rem; }
+        
+        .about { background: white; padding: 5rem 5%; display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
+        .about-text { flex: 1; min-width: 300px; }
+        .about-img { flex: 1; min-width: 300px; border-radius: 10px; }
+        
+        footer { background: var(--secondary); color: white; padding: 3rem 5%; text-align: center; }
+        .socials { margin-top: 1rem; }
+        .socials a { color: white; margin: 0 10px; font-size: 1.5rem; text-decoration: none; }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            header { flex-direction: column; padding: 1rem; }
+            nav ul { margin-top: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Sabor do Nordeste</div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#cardapio">Cardápio</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero">
+        <h1>O Verdadeiro Tempero Caseiro</h1>
+        <p>Almoço fresco todos os dias com ingredientes selecionados e aquele toque de carinho que você só encontra aqui.</p>
+        <a href="#cardapio" class="btn">Ver Cardápio de Hoje</a>
+    </section>
+
+    <section id="cardapio" class="menu-section">
+        <h2 class="section-title">Nossos Pratos Principais</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=500&q=80" alt="Prato Feito">
+                <div class="menu-info">
+                    <h3>PF Executivo</h3>
+                    <p>Arroz, feijão fresquinho, salada, fritas e sua escolha de proteína (carne, frango ou peixe).</p>
+                    <span class="price">R$ 22,90</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=500&q=80" alt="Salada Especial">
+                <div class="menu-info">
+                    <h3>Salada Tropical</h3>
+                    <p>Mix de folhas verdes, frutas da estação, castanhas e molho especial de mel e mostarda.</p>
+                    <span class="price">R$ 18,50</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=500&q=80" alt="Prato Gourmet">
+                <div class="menu-info">
+                    <h3>Filé de Tilápia</h3>
+                    <p>Filé grelhado acompanhado de purê de mandioquinha e legumes no vapor.</p>
+                    <span class="price">R$ 28,00</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre" class="about">
+        <div class="about-text">
+            <h2>Nossa História</h2>
+            <p>Com mais de 10 anos de tradição em Natal, o Sabor do Nordeste nasceu da paixão pela culinária regional. Nosso compromisso é servir qualidade, rapidez e sabor inigualável em cada prato.</p>
+            <br>
+            <p>Utilizamos apenas ingredientes de produtores locais, garantindo frescor e apoiando nossa comunidade.</p>
+        </div>
+        <img class="about-img" src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=600&q=80" alt="Restaurante">
+    </section>
+
+    <footer id="contato">
+        <h3>Sabor do Nordeste</h3>
+        <p>Rua das Gastronomia, 123 - Neópolis, Natal - RN</p>
+        <p>Telefone: (84) 99999-0000</p>
+        <div class="socials">
+            <a href="#">Instagram</a>
+            <a href="#">WhatsApp</a>
+        </div>
+        <p style="margin-top: 2rem; font-size: 0.8rem;">&copy; 2026 Sabor do Nordeste - Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
+    <script>
+        // Efeito de rolagem suave para links de navegação
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Simulação de carregamento dinâmico do cardápio
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.padding = '0.5rem 5%';
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+            } else {
+                header.style.padding = '1rem 5%';
+                header.style.backgroundColor = 'white';
+            }
+        });
+
+        // Log de boas-vindas para o console (bom para portfólio)
+        console.log("%cSabor do Nordeste - Landing Page Ativa!", "color: #e67e22; font-size: 20px; font-weight: bold;");
+    </script>
