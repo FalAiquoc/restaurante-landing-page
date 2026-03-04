@@ -4,10 +4,10 @@ import time
 class NexuFoodAgent:
     """
     Agente inteligente para atendimento virtual e gestão de cardápio dinâmico.
-    Utiliza lógica de processamento de linguagem natural (simulada) para 
+    Utiliza lógica de processamento de linguagem natural (simulada) para
     converter intenções de clientes em pedidos no sistema.
     """
-    
+
     def __init__(self, restaurant_name):
         self.restaurant_name = restaurant_name
         self.menu = {
@@ -21,48 +21,49 @@ class NexuFoodAgent:
         """
         Agente de Atendimento: Analisa a mensagem do cliente.
         """
-        print(f"[Agente Nexu] Processando mensagem: {message}")
         message = message.lower()
-        
-        if "cardápio" in message or "opções" in message:
-            return self.get_dynamic_menu()
+        if "cardápio" in message or "menu" in message:
+            return self.get_formatted_menu()
         elif "pedir" in message or "quero" in message:
-            return self.handle_order_intent(message)
-        else:
-            return "Olá! Sou o assistente virtual do {}. Como posso ajudar com seu pedido hoje?".format(self.restaurant_name)
+            return self.handle_order(message)
+        return "Olá! Sou o assistente Nexu. Como posso ajudar seu restaurante hoje?"
 
-    def get_dynamic_menu(self):
+    def get_formatted_menu(self):
         """
-        Agente de Cardápio: Retorna apenas itens em estoque.
+        Agente de Cardápio: Retorna o cardápio atualizado.
         """
-        available_items = {k: v for k, v in self.menu.items() if v['stock'] > 0}
-        response = "Nosso cardápio atualizado:
+        response = f"--- Cardápio {self.restaurant_name} ---
 "
-        for item, details in available_items.items():
-            response += f"- {item.capitalize()}: R$ {details['price']}
+        for item, details in self.menu.items():
+            stock_msg = "Disponível" if details["stock"] > 0 else "Esgotado"
+            response += f"- {item.capitalize()}: R$ {details['price']:.2f} ({stock_msg})
 "
         return response
 
-    def handle_order_intent(self, message):
+    def handle_order(self, message):
         """
-        Agente de Vendas: Converte intenção em pedido real.
+        Lógica de processamento de pedido simplificada.
         """
         for item in self.menu:
             if item in message:
-                if self.menu[item]['stock'] > 0:
-                    self.menu[item]['stock'] -= 1
-                    order = {"item": item, "status": "preparando", "time": time.time()}
+                if self.menu[item]["stock"] > 0:
+                    self.menu[item]["stock"] -= 1
+                    order = {"item": item, "price": self.menu[item]["price"], "time": time.ctime()}
                     self.active_orders.append(order)
-                    return f"Perfeito! Seu pedido de {item} foi anotado e o Agente de Cozinha já foi notificado."
-                else:
-                    return f"Sinto muito, o item {item} acabou de esgotar. Gostaria de outra opção?"
-        return "Não consegui identificar o item. Pode repetir o nome do prato?"
+                    return f"Pedido confirmado: {item.capitalize()}! A IA de logística já está processando."
+                return f"Desculpe, o item {item} está esgotado no momento."
+        return "Não consegui identificar o item no seu pedido. Pode repetir?"
 
-# Instanciação do sistema de agentes
+    def get_revenue(self):
+        """
+        Relatório financeiro agêntico.
+        """
+        total = sum(order["price"] for order in self.active_orders)
+        return f"Faturamento Total via IA: R$ {total:.2f}"
+
+# Simulação de uso
 if __name__ == "__main__":
     bot = NexuFoodAgent("Restaurante do Dyjann")
-    
-    # Simulação de interação
-    print(bot.process_message("Quais são as opções do cardápio?"))
-    print(bot.process_message("Eu quero pedir um almoço executivo"))
-    print(f"Pedidos ativos no dashboard: {len(bot.active_orders)}")
+    print(bot.process_message("Pode me mostrar o cardápio?"))
+    print(bot.process_message("Quero pedir um almoço executivo"))
+    print(bot.get_revenue())
