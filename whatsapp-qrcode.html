@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp QR Code - Evolution API</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #25D366;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .config-section {
+            margin-bottom: 25px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border 0.3s;
+        }
+        input:focus {
+            outline: none;
+            border-color: #25D366;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+        button:hover { background: #20BA5A; }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        #qrcode-container {
+            text-align: center;
+            margin-top: 30px;
+            display: none;
+        }
+        #qrcode-container.show { display: block; }
+        #qrcode {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        #status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+            display: none;
+        }
+        #status.show { display: block; }
+        #status.success { background: #d4edda; color: #155724; }
+        #status.error { background: #f8d7da; color: #721c24; }
+        #status.info { background: #d1ecf1; color: #0c5460; }
+        .timer {
+            text-align: center;
+            color: #666;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+        .instructions {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 13px;
+            color: #555;
+            line-height: 1.6;
+        }
+        .instructions ol {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📱 WhatsApp QR Code</h1>
+        <p class="subtitle">Evolution API - DoboyTech</p>
+        
+        <div class="config-section">
+            <label for="api-url">URL da Evolution API</label>
+            <input type="text" id="api-url" value="http://34.23.170.134:8080" placeholder="http://seu-servidor:8080">
+        </div>
+        
+        <div class="config-section">
+            <label for="api-key">API Key</label>
+            <input type="password" id="api-key" placeholder="Sua chave de API">
+        </div>
+        
+        <div class="config-section">
+            <label for="instance-name">Nome da Instância</label>
+            <input type="text" id="instance-name" value="doboytech" placeholder="Ex: minha-empresa">
+        </div>
+        
+        <button id="generate-btn" onclick="generateQRCode()">Gerar QR Code</button>
+        
+        <div id="status"></div>
+        
+        <div id="qrcode-container">
+            <img id="qrcode" src="" alt="QR Code">
+            <div class="timer" id="timer"></div>
+        </div>
+        
+        <div class="instructions">
+            <strong>📋 Instruções:</strong>
+            <ol>
+                <li>Configure a URL e API Key da sua Evolution API</li>
+                <li>Clique em "Gerar QR Code"</li>
+                <li>Abra o WhatsApp no seu celular</li>
+                <li>Vá em Configurações > Aparelhos conectados</li>
+                <li>Toque em "Conectar um aparelho"</li>
+                <li>Escaneie o QR Code que aparecerá abaixo</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        let refreshInterval;
+        let countdown;
+        
+        async function generateQRCode() {
+            const apiUrl = document.getElementById('api-url').value.trim();
+            const apiKey = document.getElementById('api-key').value.trim();
+            const instanceName = document.getElementById('instance-name').value.trim();
+            const generateBtn = document.getElementById('generate-btn');
+            const statusEl = document.getElementById('status');
+            const qrcodeContainer = document.getElementById('qrcode-container');
+            const qrcodeImg = document.getElementById('qrcode');
+            
+            if (!apiUrl || !apiKey || !instanceName) {
+                showStatus('error', 'Preencha todos os campos!');
+                return;
+            }
+            
+            generateBtn.disabled = true;
+            generateBtn.textContent = 'Gerando...';
+            showStatus('info', 'Conectando na Evolution API...');
+            qrcodeContainer.classList.remove('show');
+            
+            try {
+                // Criar instância
+                const createResponse = await fetch(`${apiUrl}/instance/create`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'apikey': apiKey
+                    },
+                    body: JSON.stringify({
+                        instanceName: instanceName,
+                        qrcode: true,
+                        integration': 'WHATSAPP-BAILEYS'
+                    })
+                });
+                
+                if (!createResponse.ok) {
+                    throw new Error(`Erro: ${createResponse.status}`);
+                }
+                
+                const data = await createResponse.json();
+                
+                if (data.qrcode && data.qrcode.base64) {
+                    qrcodeImg.src = data.qrcode.base64;
+                    qrcodeContainer.classList.add('show');
+                    showStatus('success', '✅ QR Code gerado! Escaneie com seu WhatsApp');
+                    startAutoRefresh(apiUrl, apiKey, instanceName);
+                } else {
+                    showStatus('info', 'Instância já existe. Buscando QR Code...');
+                    await fetchQRCode(apiUrl, apiKey, instanceName);
+                }
+                
+            } catch (error) {
+                showStatus('error', `Erro: ${error.message}. Verifique se a Evolution API está rodando.`);
+            } finally {
+                generateBtn.disabled = false;
+                generateBtn.textContent = 'Gerar QR Code';
+            }
+        }
+        
+        async function fetchQRCode(apiUrl, apiKey, instanceName) {
+            try {
+                const response = await fetch(`${apiUrl}/instance/connect/${instanceName}`, {
+                    method: 'GET',
+                    headers: { 'apikey': apiKey }
+                });
+                
+                const data = await response.json();
+                
+                if (data.qrcode && data.qrcode.base64) {
+                    document.getElementById('qrcode').src = data.qrcode.base64;
+                    document.getElementById('qrcode-container').classList.add('show');
+                    showStatus('success', '✅ QR Code atualizado!');
+                    startAutoRefresh(apiUrl, apiKey, instanceName);
+                } else if (data.instance && data.instance.state === 'open') {
+                    showStatus('success', '✅ WhatsApp já está conectado!');
+                } else {
+                    showStatus('error', 'Não foi possível obter o QR Code');
+                }
+            } catch (error) {
+                showStatus('error', `Erro ao buscar QR Code: ${error.message}`);
+            }
+        }
+        
+        function startAutoRefresh(apiUrl, apiKey, instanceName) {
+            clearInterval(refreshInterval);
+            clearInterval(countdown);
+            
+            let secondsLeft = 30;
+            const timerEl = document.getElementById('timer');
+            
+            countdown = setInterval(() => {
+                timerEl.textContent = `Atualizando em ${secondsLeft}s...`;
+                secondsLeft--;
+                if (secondsLeft < 0) secondsLeft = 30;
+            }, 1000);
+            
+            refreshInterval = setInterval(() => {
+                fetchQRCode(apiUrl, apiKey, instanceName);
+            }, 30000);
+        }
+        
+        function showStatus(type, message) {
+            const statusEl = document.getElementById('status');
+            statusEl.className = `show ${type}`;
+            statusEl.textContent = message;
+        }
+        
+        window.addEventListener('beforeunload', () => {
+            clearInterval(refreshInterval);
+            clearInterval(countdown);
+        });
+    </script>
+</body>
+</html>
