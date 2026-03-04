@@ -3,160 +3,235 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sabor do Nordeste | O Melhor Almoço da Região</title>
+    <title>Nexu Food | Gestão e Automação Inteligente para Restaurantes</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #e67e22;
-            --secondary: #2c3e50;
-            --accent: #27ae60;
-            --light: #f9f9f9;
-            --dark: #333;
+            --gunmetal: #1a1c1e;
+            --wood: #3d2b1f;
+            --gold: #d4af37;
+            --gold-light: #f4d03f;
+            --text-light: #e0e0e0;
+            --text-muted: #8d8d8d;
+            --bg-accent: #2c2f33;
+            --border: rgba(212, 175, 55, 0.2);
+            --success: #25d366;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background-color: var(--gunmetal); 
+            color: var(--text-light); 
+            line-height: 1.7; 
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .brand { font-family: 'Cinzel', serif; font-weight: 700; letter-spacing: 1px; color: var(--gold); }
         
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        
-        body { background-color: var(--light); color: var(--dark); line-height: 1.6; }
-        
-        header { background: white; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 1000; }
-        
-        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary); }
-        
-        nav ul { display: flex; list-style: none; }
-        nav ul li { margin-left: 20px; }
-        nav ul li a { text-decoration: none; color: var(--secondary); font-weight: 500; }
-        
-        .hero { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=1350&q=80'); height: 80vh; background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; padding: 0 20px; }
-        
-        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; }
-        .hero p { font-size: 1.2rem; margin-bottom: 2rem; max-width: 600px; }
-        
-        .btn { background: var(--primary); color: white; padding: 12px 30px; border: none; border-radius: 5px; text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .btn:hover { background: #d35400; }
-        
-        .menu-section { padding: 5rem 5%; text-align: center; }
-        .section-title { margin-bottom: 3rem; font-size: 2.5rem; color: var(--secondary); }
-        
-        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        
-        .menu-item { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.1); transition: 0.3s; }
-        .menu-item:hover { transform: translateY(-5px); }
-        .menu-item img { width: 100%; height: 200px; object-fit: cover; }
-        .menu-info { padding: 20px; }
-        .menu-info h3 { margin-bottom: 10px; color: var(--secondary); }
-        .menu-info p { font-size: 0.9rem; color: #666; margin-bottom: 15px; }
-        .price { color: var(--accent); font-weight: bold; font-size: 1.2rem; }
-        
-        .about { background: white; padding: 5rem 5%; display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
-        .about-text { flex: 1; min-width: 300px; }
-        .about-img { flex: 1; min-width: 300px; border-radius: 10px; }
-        
-        footer { background: var(--secondary); color: white; padding: 3rem 5%; text-align: center; }
-        .socials { margin-top: 1rem; }
-        .socials a { color: white; margin: 0 10px; font-size: 1.5rem; text-decoration: none; }
-        
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            header { flex-direction: column; padding: 1rem; }
-            nav ul { margin-top: 1rem; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+
+        /* Navigation */
+        nav { padding: 25px 0; border-bottom: 1px solid var(--border); background: rgba(0,0,0,0.3); position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .brand { font-size: 1.6rem; text-decoration: none; }
+        .nav-links a { color: var(--text-light); text-decoration: none; margin-left: 30px; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; }
+
+        /* Hero */
+        .hero { padding: 180px 0 100px; background: linear-gradient(rgba(26,28,30,0.92), rgba(26,28,30,0.92)), url('https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; display: flex; align-items: center; }
+        .hero-flex { display: flex; gap: 60px; align-items: center; }
+        .hero-text { flex: 1; }
+        .hero h1 { font-size: 3.2rem; margin-bottom: 25px; line-height: 1.1; }
+        .hero p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 40px; }
+
+        /* Form Lead Capture (Anota AI Style) */
+        .hero-form { 
+            flex: 0 0 450px; background: var(--wood); padding: 40px; border-radius: 4px; 
+            border: 1px solid var(--gold); box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+        .hero-form h2 { color: white; margin-bottom: 25px; font-size: 1.5rem; text-align: center; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .form-group { margin-bottom: 15px; }
+        .full-width { grid-column: span 2; }
+        label { display: block; font-size: 0.75rem; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; font-weight: 600; }
+        input, select { 
+            width: 100%; padding: 12px; background: rgba(0,0,0,0.4); border: 1px solid var(--border); 
+            color: white; border-radius: 2px; font-family: inherit; font-size: 0.9rem;
+        }
+        .btn-trial { 
+            width: 100%; background: var(--gold); color: var(--gunmetal); border: none; padding: 15px; 
+            font-weight: 800; text-transform: uppercase; font-family: 'Cinzel', serif; cursor: pointer; transition: 0.3s; margin-top: 10px;
+        }
+        .btn-trial:hover { background: var(--gold-light); }
+
+        /* Pricing Table */
+        .section { padding: 100px 0; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 50px; }
+        .plan-card { background: var(--bg-accent); border: 1px solid var(--border); padding: 50px; border-radius: 4px; transition: 0.3s; position: relative; }
+        .plan-card.featured { border-color: var(--gold); border-width: 2px; }
+        .plan-card h3 { font-size: 2rem; margin-bottom: 10px; }
+        .price { font-size: 2.5rem; color: #fff; margin-bottom: 30px; }
+        .price span { font-size: 1rem; color: var(--text-muted); }
+        .feature-list { list-style: none; margin-bottom: 40px; }
+        .feature-list li { margin-bottom: 12px; font-size: 0.95rem; color: var(--text-muted); display: flex; align-items: center; gap: 10px; }
+        .feature-list li i.fa-check { color: var(--success); }
+        .feature-list li i.fa-times { color: #ff4d4d; opacity: 0.5; }
+
+        /* Features */
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .feature-item { text-align: center; padding: 40px; background: rgba(0,0,0,0.2); border: 1px solid var(--border); }
+        .feature-item i { font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; }
+
+        footer { padding: 60px 0; background: #000; text-align: center; border-top: 2px solid var(--wood); }
+        .footer-logo { font-size: 2rem; margin-bottom: 20px; }
+
+        @media (max-width: 992px) {
+            .hero-flex { flex-direction: column; }
+            .hero-form { flex: 1; width: 100%; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">Sabor do Nordeste</div>
-        <nav>
-            <ul>
-                <li><a href="#inicio">Início</a></li>
-                <li><a href="#cardapio">Cardápio</a></li>
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
-        </nav>
-    </header>
+    <nav>
+        <div class="container nav-content">
+            <a href="#" class="brand">NEXU FOOD</a>
+            <div class="nav-links">
+                <a href="#funcionalidades">Funcionalidades</a>
+                <a href="#planos">Planos</a>
+                <a href="https://wa.me/suporte" style="color: var(--gold);"><i class="fab fa-whatsapp"></i> Falar com Consultor</a>
+            </div>
+        </div>
+    </nav>
 
-    <section id="inicio" class="hero">
-        <h1>O Verdadeiro Tempero Caseiro</h1>
-        <p>Almoço fresco todos os dias com ingredientes selecionados e aquele toque de carinho que você só encontra aqui.</p>
-        <a href="#cardapio" class="btn">Ver Cardápio de Hoje</a>
+    <section class="hero">
+        <div class="container hero-flex">
+            <div class="hero-text">
+                <h1>O Plano Ideal para seu Restaurante Lucrar 80% mais</h1>
+                <p>Descubra como a Nexu Food automatiza seu atendimento, centraliza seus pedidos e profissionaliza sua gestão financeira com inteligência artificial.</p>
+                <div class="stats" style="display: flex; gap: 30px; opacity: 0.8;">
+                    <div><b style="color: var(--gold); font-size: 1.5rem;">40k+</b><br><small>Clientes</small></div>
+                    <div><b style="color: var(--gold); font-size: 1.5rem;">24/7</b><br><small>Suporte VIP</small></div>
+                    <div><b style="color: var(--gold); font-size: 1.5rem;">100%</b><br><small>Seguro</small></div>
+                </div>
+            </div>
+            <div class="hero-form">
+                <h2>Teste Grátis por 7 dias</h2>
+                <form class="form-grid">
+                    <div class="form-group full-width">
+                        <label>Nome Completo</label>
+                        <input type="text" placeholder="Seu nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label>E-mail Pessoal</label>
+                        <input type="email" placeholder="seu@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Celular (WhatsApp)</label>
+                        <input type="tel" placeholder="(00) 00000-0000" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Nome do Estabelecimento</label>
+                        <input type="text" placeholder="Ex: Nexu Grill" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Pedidos p/ Dia</label>
+                        <select required>
+                            <option value="low">Menos de 20</option>
+                            <option value="high">Mais de 20</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Faturamento Mensal</label>
+                        <select required>
+                            <option value="1">Até R$ 10k</option>
+                            <option value="2">Até R$ 40k</option>
+                            <option value="3">Acima de R$ 40k</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-trial">Começar Teste Gratuito</button>
+                </form>
+            </div>
+        </div>
     </section>
 
-    <section id="cardapio" class="menu-section">
-        <h2 class="section-title">Nossos Pratos Principais</h2>
-        <div class="menu-grid">
-            <div class="menu-item">
-                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=500&q=80" alt="Prato Feito">
-                <div class="menu-info">
-                    <h3>PF Executivo</h3>
-                    <p>Arroz, feijão fresquinho, salada, fritas e sua escolha de proteína (carne, frango ou peixe).</p>
-                    <span class="price">R$ 22,90</span>
-                </div>
+    <section class="section container" id="planos">
+        <div style="text-align: center; margin-bottom: 60px;">
+            <h2>Invista no seu Sucesso</h2>
+            <p style="color: var(--text-muted);">Preços acessíveis para escalar sua operação.</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="plan-card">
+                <h3>Nexu Start</h3>
+                <p style="color: var(--text-muted); margin-bottom: 20px;">Ideal para quem está começando a automatizar.</p>
+                <div class="price">R$ 299,90<span>/mês</span></div>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check"></i> Robô IA para WhatsApp/Insta</li>
+                    <li><i class="fas fa-check"></i> Cardápio Digital Customizado</li>
+                    <li><i class="fas fa-check"></i> QR Code para Mesas</li>
+                    <li><i class="fas fa-check"></i> Pagamento Online Integrado</li>
+                    <li><i class="fas fa-check"></i> Suporte 7 dias por semana</li>
+                    <li><i class="fas fa-times"></i> Gestor de Estoque Avançado</li>
+                    <li><i class="fas fa-times"></i> Emissão de NF Automatizada</li>
+                </ul>
+                <button class="btn-trial" style="background: transparent; border: 1px solid var(--gold); color: var(--gold);">Contratar Start</button>
             </div>
-            <div class="menu-item">
-                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=500&q=80" alt="Salada Especial">
-                <div class="menu-info">
-                    <h3>Salada Tropical</h3>
-                    <p>Mix de folhas verdes, frutas da estação, castanhas e molho especial de mel e mostarda.</p>
-                    <span class="price">R$ 18,50</span>
-                </div>
+            <div class="plan-card featured">
+                <div style="position: absolute; top: -15px; right: 20px; background: var(--gold); color: var(--gunmetal); padding: 5px 15px; font-size: 0.7rem; font-weight: 800;">MAIS POPULAR</div>
+                <h3>Nexu Advanced</h3>
+                <p style="color: var(--text-muted); margin-bottom: 20px;">Gestão completa e integrada para grandes operações.</p>
+                <div class="price">R$ 399,90<span>/mês</span></div>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check"></i> Tudo do plano Start</li>
+                    <li><i class="fas fa-check"></i> Gestor de Estoque e Compras</li>
+                    <li><i class="fas fa-check"></i> Display de Cozinha (KDS)</li>
+                    <li><i class="fas fa-check"></i> NF Automatizada e Financeiro</li>
+                    <li><i class="fas fa-check"></i> Integração com Anúncios</li>
+                    <li><i class="fas fa-check"></i> App para Garçom Ilimitado</li>
+                    <li><i class="fas fa-check"></i> Recuperador de Vendas VIP</li>
+                </ul>
+                <button class="btn-trial">Contratar Advanced</button>
             </div>
-            <div class="menu-item">
-                <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=500&q=80" alt="Prato Gourmet">
-                <div class="menu-info">
-                    <h3>Filé de Tilápia</h3>
-                    <p>Filé grelhado acompanhado de purê de mandioquinha e legumes no vapor.</p>
-                    <span class="price">R$ 28,00</span>
+        </div>
+    </section>
+
+    <section class="section" style="background: var(--bg-accent);" id="funcionalidades">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 60px;">
+                <h2>Tecnologia de Ponta</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <i class="fas fa-robot"></i>
+                    <h3>Atendimento Virtual</h3>
+                    <p>IA que entende áudios e responde perguntas frequentes 24h por dia.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-utensils"></i>
+                    <h3>Cardápio Dinâmico</h3>
+                    <p>Sincronização em tempo real com seu estoque e cozinha.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-chart-pie"></i>
+                    <h3>Dashboards Reais</h3>
+                    <p>Visualize seu lucro líquido, CMV e pratos mais vendidos em segundos.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="sobre" class="about">
-        <div class="about-text">
-            <h2>Nossa História</h2>
-            <p>Com mais de 10 anos de tradição em Natal, o Sabor do Nordeste nasceu da paixão pela culinária regional. Nosso compromisso é servir qualidade, rapidez e sabor inigualável em cada prato.</p>
-            <br>
-            <p>Utilizamos apenas ingredientes de produtores locais, garantindo frescor e apoiando nossa comunidade.</p>
+    <footer>
+        <div class="container">
+            <div class="footer-logo brand">NEXU FOOD</div>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Nexu Gestão de Restaurantes LTDA © 2026</p>
+            <div style="margin-top: 20px; font-size: 0.75rem; color: var(--text-muted); max-width: 600px; margin-left: auto; margin-right: auto;">
+                Este site é um projeto demonstrativo de alta performance. Todas as funcionalidades descritas são parte da suíte Nexu Food para o mercado de alimentação.
+            </div>
         </div>
-        <img class="about-img" src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=600&q=80" alt="Restaurante">
-    </section>
-
-    <footer id="contato">
-        <h3>Sabor do Nordeste</h3>
-        <p>Rua das Gastronomia, 123 - Neópolis, Natal - RN</p>
-        <p>Telefone: (84) 99999-0000</p>
-        <div class="socials">
-            <a href="#">Instagram</a>
-            <a href="#">WhatsApp</a>
-        </div>
-        <p style="margin-top: 2rem; font-size: 0.8rem;">&copy; 2026 Sabor do Nordeste - Todos os direitos reservados.</p>
     </footer>
 
 </body>
 </html>
-    <script>
-        // Efeito de rolagem suave para links de navegação
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Simulação de carregamento dinâmico do cardápio
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.style.padding = '0.5rem 5%';
-                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-            } else {
-                header.style.padding = '1rem 5%';
-                header.style.backgroundColor = 'white';
-            }
-        });
-
-        // Log de boas-vindas para o console (bom para portfólio)
-        console.log("%cSabor do Nordeste - Landing Page Ativa!", "color: #e67e22; font-size: 20px; font-weight: bold;");
-    </script>
