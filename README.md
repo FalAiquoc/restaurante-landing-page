@@ -1,23 +1,22 @@
-# Nexu Food - Gestao e Automacao Inteligente para Restaurantes
+# Nexu Food - Gestao Inteligente Baseada em Agentes
 
-Solucao completa de SaaS para estabelecimentos do setor de food service, focada em automacao de atendimento e otimizacao de processos internos. A landing page foi projetada para demonstrar os recursos de gestao inteligente e cardapio digital, visando a conversao de donos de restaurantes.
+Plataforma de food service operada por um ecossistema de agentes Python autônomos. Este projeto integra uma landing page de alta conversão, um dashboard administrativo dinâmico e um motor de inteligência artificial para automação completa.
 
-## Funcionalidades de Gestao
-- **Atendimento Automatico**: Chatbot integrado para WhatsApp e Instagram.
-- **Cardapio Digital Inteligente**: QR Code e link direto para pedidos.
-- **Painel de Controle Centralizado**: Gerenciamento de pedidos e estoque em tempo real.
-- **Recuperador de Vendas**: Automacao para carrinhos abandonados.
+## Sistema de Agentes (Python)
+O coração da Nexu Food é composto por agentes especializados:
+- **Agente Comercial**: Responsável pelo atendimento virtual 24/7, processando pedidos e dúvidas dos clientes.
+- **Agente de Cardápio**: Realiza a sincronização dinâmica do estoque com a vitrine digital.
+- **Agente de Logística**: Otimiza a comunicação com entregadores e status de entrega.
 
-## Diferenciais Tecnologicos
-O projeto utiliza uma arquitetura pensada para escala e facil integracao:
-- Design Mobile-First de alta performance.
-- SEO avancado focado em palavras-chave de gestao e automacao.
-- Integracao pronta para Meta Pixel e Google Analytics 4.
+## Funcionalidades Core
+- **Dashboard Administrativo**: Visão 360 do negócio com métricas agênticas e faturamento em tempo real.
+- **Atendimento Virtual Inteligente**: Chatbot Python que entende intenções e áudios.
+- **Cardápio Dinâmico**: Gestão de pratos com controle de disponibilidade automática.
 
-## Integracoes e CRM
-- **CRM de Vendas**: Fluxo de leads estruturado para Webhooks (n8n, Make, Zapier).
-- **Notificacoes em Tempo Real**: Alertas de novos pedidos via WhatsApp e Telegram.
-- **Metodos de Pagamento**: PIX automatizado e integracao com gateways de pagamento.
+## Tecnologias e Arquitetura
+- **Front-end**: HTML5, CSS3 (Modern UI), Chart.js para dashboards.
+- **Back-end (Agentes)**: Python 3 com lógica agêntica para automação de processos.
+- **Integração**: Pronto para Webhooks, WhatsApp Business API e Google Analytics 4.
 
 ---
-Projeto desenvolvido como modelo de landing page para SaaS de gestao de restaurantes.
+Projeto estruturado para máxima escala e performance operacional.
