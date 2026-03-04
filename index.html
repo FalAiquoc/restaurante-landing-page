@@ -24,221 +24,159 @@
         /* Navbar */
         nav { background: var(--white); padding: 15px 0; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         nav .container { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 24px; font-weight: 800; color: var(--primary); letter-spacing: -1px; }
-        
-        .nav-links { display: flex; align-items: center; list-style: none; }
-        .nav-links > li { margin-left: 25px; position: relative; }
+        .logo { font-size: 24px; font-weight: 800; color: var(--primary); letter-spacing: -1px; text-decoration: none; }
+        .nav-links { display: flex; list-style: none; align-items: center; }
+        .nav-links li { margin-left: 25px; }
         .nav-links a { text-decoration: none; color: var(--secondary); font-weight: 600; font-size: 14px; transition: 0.3s; }
         .nav-links a:hover { color: var(--primary); }
-        
-        /* Dropdown Menu */
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: var(--white);
-            min-width: 220px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            z-index: 1001;
-            border-radius: 8px;
-            padding: 10px 0;
-            top: 100%;
-            left: 0;
-            margin-top: 15px;
-            border: 1px solid #f0f0f0;
-        }
-        .nav-links li:hover .dropdown-content { display: block; }
-        .dropdown-content a {
-            padding: 12px 20px;
-            font-size: 13px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: background 0.2s;
-        }
-        .dropdown-content a:hover {
-            background-color: var(--gray-light);
-            color: var(--primary);
-        }
-        .dropdown-content i { color: var(--primary); width: 20px; text-align: center; }
 
-        .btn-nav { background: var(--primary); color: var(--white) !important; padding: 10px 20px; border-radius: 5px; box-shadow: 0 4px 6px rgba(255, 77, 77, 0.2); }
+        .btn-whatsapp { background: #25D366; color: white !important; padding: 10px 20px; border-radius: 50px; display: flex; align-items: center; gap: 10px; }
 
-        /* Hero Section */
-        .hero { padding: 120px 0 80px; background: linear-gradient(135deg, #FFF5F5 0%, #FFFFFF 100%); position: relative; }
-        .hero-content { max-width: 700px; text-align: left; }
-        .hero h1 { font-size: 56px; line-height: 1.1; margin-bottom: 25px; color: var(--dark); font-weight: 800; }
-        .hero h1 span { color: var(--primary); }
-        .hero p { font-size: 20px; color: var(--gray); margin-bottom: 40px; }
-        .hero-btns { display: flex; gap: 20px; }
-        .btn { display: inline-block; padding: 18px 35px; border-radius: 8px; font-weight: 700; text-decoration: none; transition: 0.3s; cursor: pointer; border: none; }
-        .btn-primary { background: var(--primary); color: var(--white); box-shadow: 0 10px 20px rgba(255, 77, 77, 0.2); }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(255, 77, 77, 0.3); }
-        .btn-secondary { background: var(--white); color: var(--secondary); border: 2px solid #eee; }
+        /* Hero */
+        .hero { padding: 80px 0; background: linear-gradient(135deg, #fff 0%, #fff5f5 100%); position: relative; }
+        .hero-flex { display: flex; align-items: center; gap: 50px; }
+        .hero-text { flex: 1; }
+        .hero-text h1 { font-size: 48px; font-weight: 800; line-height: 1.2; margin-bottom: 25px; color: var(--dark); }
+        .hero-text h1 span { color: var(--primary); }
+        .hero-text p { font-size: 18px; color: var(--gray); margin-bottom: 35px; }
         
-        /* ROI Section */
-        .roi-section { padding: 100px 0; background: var(--dark); color: var(--white); text-align: center; }
-        .roi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 50px; }
-        .roi-card h2 { font-size: 48px; color: var(--primary); margin-bottom: 10px; }
-        .roi-card p { font-size: 16px; color: #888; }
+        .hero-form { flex: 0 0 400px; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 1px solid #eee; }
+        .hero-form h3 { margin-bottom: 20px; font-weight: 700; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 12px; font-weight: 700; color: #888; margin-bottom: 5px; text-transform: uppercase; }
+        .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
+        .btn-submit { width: 100%; background: var(--primary); color: white; padding: 15px; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 77, 77, 0.3); }
+
+        /* Dashboard Preview */
+        .dashboard-preview { padding: 100px 0; background: var(--dark); color: white; text-align: center; }
+        .dashboard-preview h2 { font-size: 36px; margin-bottom: 50px; }
+        .mockup-container { background: #2d3436; border-radius: 15px; padding: 10px; border: 4px solid #444; max-width: 900px; margin: 0 auto; box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
+        .mockup-img { background: #f8f9fa; border-radius: 8px; height: 400px; display: flex; align-items: center; justify-content: center; color: #2d3436; flex-direction: column; }
+        .btn-demo { display: inline-block; margin-top: 40px; background: var(--primary); color: white; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: 700; transition: 0.3s; }
+        .btn-demo:hover { background: white; color: var(--primary); }
 
         /* Features */
         .features { padding: 100px 0; }
-        .section-header { text-align: center; max-width: 700px; margin: 0 auto 60px; }
-        .section-header h2 { font-size: 36px; margin-bottom: 20px; }
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .feature-card { padding: 40px; border: 1px solid #eee; border-radius: 15px; transition: 0.3s; }
-        .feature-card:hover { border-color: var(--primary); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        .feature-card i { font-size: 32px; color: var(--primary); margin-bottom: 25px; }
-        .feature-card h3 { margin-bottom: 15px; font-size: 22px; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 36px; color: var(--dark); }
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .feature-card { padding: 40px; background: var(--gray-light); border-radius: 20px; transition: 0.3s; }
+        .feature-card:hover { background: white; box-shadow: 0 15px 30px rgba(0,0,0,0.05); transform: translateY(-5px); }
+        .feature-icon { font-size: 40px; color: var(--primary); margin-bottom: 20px; }
+        .feature-card h3 { margin-bottom: 15px; }
 
-        /* Steps */
-        .steps { padding: 100px 0; background: var(--gray-light); }
-        .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 50px; counter-reset: step; }
-        .step-item { position: relative; text-align: center; }
-        .step-item::before { 
-            counter-increment: step; 
-            content: counter(step); 
-            width: 40px; height: 40px; background: var(--primary); color: var(--white); 
-            display: flex; align-items: center; justify-content: center; border-radius: 50%; 
-            margin: 0 auto 20px; font-weight: 800;
-        }
-
-        /* CTA Section */
-        .cta-final { padding: 100px 0; background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=1200'); background-size: cover; color: var(--white); text-align: center; }
-        .cta-final h2 { font-size: 42px; margin-bottom: 20px; }
-        
         /* Footer */
-        footer { padding: 80px 0 40px; background: #000; color: #666; font-size: 14px; }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 60px; }
-        .footer-logo { color: var(--white); font-size: 22px; font-weight: 800; margin-bottom: 20px; }
+        footer { padding: 60px 0; background: #fafafa; border-top: 1px solid #eee; }
+        .footer-content { display: flex; justify-content: space-between; align-items: center; }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 38px; }
-            .hero-btns { flex-direction: column; }
-            .roi-grid, .steps-grid, .footer-grid { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
+            .hero-flex { flex-direction: column; }
+            .hero-form { flex: 1; width: 100%; }
+            .features-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">NEXU FOOD</a>
+            <ul class="nav-links">
+                <li><a href="#funcionalidades">FUNCIONALIDADES</a></li>
+                <li><a href="#dashboard">DASHBOARD IA</a></li>
+                <li><a href="#planos">PLANOS</a></li>
+                <li><a href="https://wa.me/suporte" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> FALAR COM CONSULTOR</a></li>
+            </ul>
+        </div>
+    </nav>
 
-<nav>
-    <div class="container">
-        <div class="logo">NEXU FOOD</div>
-        <ul class="nav-links">
-            <li class="dropdown">
-                <a href="#funcionalidades">Funcionalidades <i class="fas fa-chevron-down" style="font-size: 10px;"></i></a>
-                <div class="dropdown-content">
-                    <a href="#funcionalidades"><i class="fas fa-robot"></i> Atendimento por Agentes</a>
-                    <a href="#funcionalidades"><i class="fas fa-qrcode"></i> Cardápio Digital</a>
-                    <a href="#funcionalidades"><i class="fas fa-bullseye"></i> Recuperação de Vendas</a>
-                    <a href="#funcionalidades"><i class="fas fa-chart-line"></i> Gestão em Tempo Real</a>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-flex">
+                <div class="hero-text">
+                    <h1>Sua Operação no <span>Piloto Automático</span> com Agentes de IA</h1>
+                    <p>Atendimento 24h, gestão de pedidos agêntica e dashboards em tempo real. O futuro da gestão gastronômica chegou.</p>
+                    <div style="display: flex; gap: 20px;">
+                        <div class="stat-item"><strong>40k+</strong><br><small>Pedidos/mês</small></div>
+                        <div class="stat-item"><strong>100%</strong><br><small>Automação</small></div>
+                        <div class="stat-item"><strong>24/7</strong><br><small>IA Ativa</small></div>
+                    </div>
                 </div>
-            </li>
-            <li><a href="#como-funciona">Como Funciona</a></li>
-            <li><a href="#precos">Preços</a></li>
-            <li><a href="dashboard.html" class="btn-nav">ACESSAR PAINEL</a></li>
-        </ul>
-    </div>
-</nav>
-
-<section class="hero">
-    <div class="container">
-        <div class="hero-content">
-            <h1>O fim do caos no seu restaurante <span>começa aqui.</span></h1>
-            <p>Recupere até 30% das vendas perdidas com atendimento automático via IA, cardápio digital de alta performance e gestão centralizada.</p>
-            <div class="hero-btns">
-                <a href="#contato" class="btn btn-primary">TESTAR GRÁTIS POR 14 DIAS</a>
-                <a href="#como-funciona" class="btn btn-secondary">VER DEMONSTRAÇÃO</a>
+                <div class="hero-form">
+                    <h3>Teste Grátis por 7 dias</h3>
+                    <form>
+                        <div class="form-group">
+                            <label>Nome do Estabelecimento</label>
+                            <input type="text" placeholder="Ex: Nexu Grill">
+                        </div>
+                        <div class="form-group">
+                            <label>WhatsApp</label>
+                            <input type="text" placeholder="(00) 00000-0000">
+                        </div>
+                        <div class="form-group">
+                            <label>Pedidos p/ Dia</label>
+                            <select>
+                                <option>Menos de 50</option>
+                                <option>Mais de 50</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-submit">COMEÇAR TESTE GRATUITO</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class="roi-section">
-    <div class="container">
-        <div class="roi-grid">
-            <div class="roi-card">
-                <h2>+30%</h2>
-                <p>Aumento médio no faturamento mensal</p>
+    <section id="dashboard" class="dashboard-preview">
+        <div class="container">
+            <h2>Controle Total na Palma da Mão</h2>
+            <div class="mockup-container">
+                <div class="mockup-img">
+                    <i class="fas fa-chart-line" style="font-size: 80px; color: var(--primary); margin-bottom: 20px;"></i>
+                    <p style="font-weight: 700; color: white;">Interface Administrativa de Alta Performance</p>
+                    <p style="font-size: 14px; color: #888;">Gestão de Agentes, Leads e Cardápio</p>
+                </div>
             </div>
-            <div class="roi-card">
-                <h2>-70%</h2>
-                <p>Redução no tempo de espera do cliente</p>
+            <a href="dashboard.html" class="btn-demo">VER DEMONSTRAÇÃO AO VIVO</a>
+        </div>
+    </section>
+
+    <section id="funcionalidades" class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Tecnologia de Ponta</h2>
             </div>
-            <div class="roi-card">
-                <h2>0%</h2>
-                <p>Taxa de erro em pedidos via WhatsApp</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-comments"></i></div>
+                    <h3>Agente Comercial</h3>
+                    <p>IA que entende áudios e responde perguntas frequentes 24h no WhatsApp e Instagram.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-utensils"></i></div>
+                    <h3>Agente de Cardápio</h3>
+                    <p>Sincronização em tempo real. Altere preços e itens e a IA atualiza em todos os canais.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-truck"></i></div>
+                    <h3>Agente de Logística</h3>
+                    <p>Gestão automática de entregadores e status de pedido para o cliente final.</p>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="funcionalidades" class="features">
-    <div class="container">
-        <div class="section-header">
-            <h2>Tecnologia Agêntica de Ponta</h2>
-            <p>Diferente de sistemas comuns, a Nexu utiliza agentes autônomos que aprendem com o comportamento do seu cliente.</p>
-        </div>
-        <div class="features-grid">
-            <div class="feature-card">
-                <i class="fas fa-robot"></i>
-                <h3>Agente Comercial 24/7</h3>
-                <p>Atendimento humanoizado que entende áudio, tira dúvidas e fecha o pedido direto no WhatsApp.</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-qrcode"></i>
-                <h3>Cardápio Inteligente</h3>
-                <p>Sincronização instantânea com estoque. Se acabou na cozinha, some do cardápio automaticamente.</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-bullseye"></i>
-                <h3>Recuperador de Vendas</h3>
-                <p>O sistema detecta carrinhos abandonados e envia uma oferta exclusiva para converter o cliente.</p>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">NEXU FOOD</div>
+                <p>Nexu Gestão de Restaurantes LTDA © 2026</p>
+                <div class="social">
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-linkedin"></i>
+                </div>
             </div>
         </div>
-    </div>
-</section>
-
-<section id="como-funciona" class="steps">
-    <div class="container">
-        <div class="section-header">
-            <h2>Implementação em 3 Passos</h2>
-        </div>
-        <div class="steps-grid">
-            <div class="step-item">
-                <h3>Cadastre seu Cardápio</h3>
-                <p>Importe seus itens ou use nossa IA para criar descrições persuasivas.</p>
-            </div>
-            <div class="step-item">
-                <h3>Conecte seus Canais</h3>
-                <p>Integre WhatsApp, Instagram e Facebook em menos de 5 minutos.</p>
-            </div>
-            <div class="step-item">
-                <h3>Venda no Automático</h3>
-                <p>Deixe nossos agentes cuidarem do atendimento enquanto você foca na cozinha.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="cta-final">
-    <div class="container">
-        <h2>Pare de perder dinheiro com atendimento lento.</h2>
-        <p>Junte-se a centenas de restaurantes que já escalaram sua operação com a Nexu.</p>
-        <br>
-        <a href="#contato" class="btn btn-primary">QUERO MEU TESTE GRÁTIS AGORA</a>
-    </div>
-</section>
-
-<footer>
-    <div class="container">
-        <div style="text-align: center;">
-            <div class="footer-logo">NEXU FOOD</div>
-            <p>© 2026 Nexu Food. Todos os direitos reservados. Desenvolvido para máxima conversão SaaS.</p>
-        </div>
-    </div>
-</footer>
-
+    </footer>
 </body>
 </html>
